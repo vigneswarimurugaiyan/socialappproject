@@ -29,7 +29,7 @@ static blogdao blogdao1;
 		
 		blogdao1=(blogdao)context.getBean("blogDAO");
 	}
-	
+	@Ignore
 	@Test
 	public void addblogTest()
 	{
@@ -37,11 +37,11 @@ static blogdao blogdao1;
 		
 		b.setBlogName("my java article");
 		b.setBlogContent("explaining oops concept");
-		b.setStatus("online");
+		b.setStatus("N");
 		b.setLikes(100);
 		b.setUserId(20);
 		b.setCreateDate(new Date());
-		assertTrue("Problem in Inserting user",blogdao1.addblog(b));
+		assertTrue("Problem in Inserting blog",blogdao1.addblog(b));
 	
 	}
 	@Ignore
@@ -51,26 +51,25 @@ static blogdao blogdao1;
 		blog b=blogdao1.getblogbyid(1);
 		b.setBlogName("About angular framework");
 		b.setBlogContent("explaining angular concept");
-		b.setStatus("online");
+		b.setStatus("A");
 		b.setLikes(500);
 		b.setUserId(21);
 		b.setCreateDate(new Date());
-		assertTrue("Problem in updating user",blogdao1.updateblog(b));
+		assertTrue("Problem in updating blog",blogdao1.updateblog(b));
 	}
-	@Ignore
 	@Test
 	public void getblogbyidTest()
 	{
-		blog b=blogdao1.getblogbyid(1);
+		blog b=blogdao1.getblogbyid(27);
 		System.out.println("getblogbyid() method invoked");
-		System.out.println("blogname = "+b.getBlogName());
+		System.out.println("blogstatus = "+b.getStatus());
 	}
 	@Ignore
 	@Test
 	public void deleteblogTest()
 	{
 		blog b=blogdao1.getblogbyid(4);
-		assertTrue("problem in deleting user",blogdao1.deleteblog(b));
+		assertTrue("problem in deleting blog",blogdao1.deleteblog(b));
 	}
 	@Ignore
 	@Test
@@ -83,5 +82,20 @@ static blogdao blogdao1;
 		}
 	}
 	
+	@Test
+	public void approveblogTest()
+	{
+	blog b=blogdao1.getblogbyid(26);
+	System.out.println("status before change"+b.getStatus());
+	b.setStatus("A");
+	assertTrue("problem in approving blog id",blogdao1.approveblog(b));
+	}
 	
+	@Test
+	public void rejectblogTest()
+	{
+		blog b=blogdao1.getblogbyid(27);
+		b.setStatus("N");
+		assertTrue("problem in rejecting  blog id",blogdao1.rejectblog(b));	
+	}
 }

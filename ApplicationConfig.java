@@ -16,6 +16,14 @@ import com.maven.socialappbackend.dao.blogcommentdao;
 import com.maven.socialappbackend.dao.blogcommentimpl;
 import com.maven.socialappbackend.dao.blogdao;
 import com.maven.socialappbackend.dao.blogdaoimpl;
+import com.maven.socialappbackend.dao.forumcommentdao;
+import com.maven.socialappbackend.dao.forumcommentimpl;
+import com.maven.socialappbackend.dao.forumdao;
+import com.maven.socialappbackend.dao.forumdaoimpl;
+import com.maven.socialappbackend.dao.frienddao;
+import com.maven.socialappbackend.dao.frienddaoimpl;
+import com.maven.socialappbackend.dao.jobdao;
+import com.maven.socialappbackend.dao.jobdaoimpl;
 import com.maven.socialappbackend.dao.userdao;
 import com.maven.socialappbackend.dao.userdaoimpl;
 import com.maven.socialappbackend.model.userdetail;
@@ -78,5 +86,29 @@ public class ApplicationConfig {
 			System.out.println("blogcomment DAO object Created");
 			return new blogcommentimpl(sessionFactory);
 		}
+		@Bean(name = "forumDAO")
+		public forumdao getforumdao(SessionFactory sessionFactory)
+		{
+			System.out.println("forum DAO object Created");
+			return new forumdaoimpl(sessionFactory);
+		}
+	   @Bean(name = "forumcommentDAO")
+		public forumcommentdao getforumcommentdao(SessionFactory sessionFactory)
+		{
+			System.out.println("forumcomment DAO object Created");
+			return new forumcommentimpl(sessionFactory);
+		}
+	   @Bean(name = "jobDAO")
+		public jobdao getjobdao(SessionFactory sessionFactory)
+		{
+			System.out.println("job DAO object Created");
+			return new jobdaoimpl(sessionFactory);
+		}
+	   @Bean(name = "friendDAO")
+	 		public frienddao getfrienddao(SessionFactory sessionFactory)
+	 		{
+	 			System.out.println("friend DAO object Created");
+	 			return new frienddaoimpl(sessionFactory);
+	 		}
 }
 
